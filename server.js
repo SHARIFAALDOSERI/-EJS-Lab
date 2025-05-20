@@ -2,10 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Set view engine to EJS
 app.set('view engine', 'ejs');
 
-// Sample restaurant data
 const RESTAURANT = {
   name: 'The Green Byte Bistro',
   isOpen: true,
@@ -55,25 +53,28 @@ const RESTAURANT = {
   ]
 };
 
-// Route: Home
-app.get('/', (req, res) => {
+
+app.get('/', (req, res) => 
+{
   res.render('home', { restaurant: RESTAURANT });
 });
 
-// Route: Full Menu
-app.get('/menu', (req, res) => {
+app.get('/menu', (req, res) => 
+{
   res.render('menu', { menuItems: RESTAURANT.menu });
 });
 
-// Route: Category-based Menu
-app.get('/menu/:category', (req, res) => {
+
+app.get('/menu/:category', (req, res) => 
+{
   const category = req.params.category;
   const menuItems = RESTAURANT.menu.filter(item => item.category === category);
   const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
   res.render('category', { menuItems, categoryName: capitalizedCategory });
 });
 
-// Start the server
-app.listen(port, () => {
+
+app.listen(port, () => 
+{
   console.log(`✅ Server is running on http://localhost:${port}`);
 });
